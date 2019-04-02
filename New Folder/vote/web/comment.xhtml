@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <link href="css/main_style.css" rel="stylesheet" type="text/css" />
+                <link href="css/global.css" rel="stylesheet" type="text/css" />
+                <link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet"/>
+
+                <title>.::MU VOTING SYSTEM::.</title>
+            </f:facet>
+
+
+            <script type="text/javascript">
+                //<![CDATA[
+                function handleMessage(data) {
+                    var series = [],
+                            chart = PF('browserChart').plot;
+
+                    for (var key in data) {
+                        series.push([key, data[key]]);
+                    }
+
+                    chart.series[0].data = series;
+                    chart.replot();
+                }
+                //]]> 
+            </script>
+        </h:head>
+        <h:body>
+            <h:outputStylesheet name="css/main_style.css" />
+            <p:layout fullPage="true">
+                <!-- <p:layoutUnit position="north" size="60" resizable="true" closable="true" collapsible="true">
+                     <div id="navi_bar">
+                         <div class="logo"><img src="images/logo.jpg"  width="200px" height="50px" alt=" "/></div>
+                         <div class="navi_bar_container">
+ 
+                             <div id="navi">
+                                 <ul>
+                                     <li><a href="homePage.xhtml">Home</a></li>
+                                     <li><a href="votingPage.xhtml">Sacco</a>  </li>
+                                     <li><a href="votingPage.xhtml">Summary page</a></li>
+                                     <li><a href="votingPage.xhtml">Calculator</a></li>
+                                     <li><a href="calendar.xhtml">Calendar</a></li>
+                                     <li><a href="help.xhtml">Need Help?</a></li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 </p:layoutUnit>-->
+                <p:layoutUnit position="north" size="60" resizable="true" closable="true" collapsible="true">
+                    <div id="navi_bar">
+                        <div class="logo"><img src="images/logo.jpg"  width="100px" height="50px" alt=" "/> VOTING SYSTEM</div>
+                        <div class="navi_bar_container">
+                            <div id="navi">
+                                <ul>
+                                    <li><a href="homePage.xhtml">Home</a></li>
+                                    <li><a href="animalPage.xhtml">Calculator</a></li>
+                                    <li><a href="calendar.xhtml">Calendar</a></li>
+                                    <li><a href="help.xhtml">Need Help?</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </p:layoutUnit>
+                <p:layoutUnit position="east" size="200" header="TODAY'S ALERTS" style="border: 0 ; overflow: hidden; font-size: x-small" collapsible="true">
+                    <h:graphicImage value="/images/Moving-animated-eyes-finger-pointing-down.gif" style="border:0" />
+                    <ul id="js-news" class="js-hidden">
+                        <c:forEach var="quotes"  items="${vote.quotesList}">
+                            <li class="news-item"><c:set var="quotes" value="${quotes.quoteDescription}"></c:set></li>
+                        </c:forEach>
+                    </ul>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50" closable="true" collapsible="true">
+                    <div class="footer_content">
+                        <div class="footer_inside" style="float: right;">Copyright © joseph Kimani All rights reserved.</div>
+                    </div>`
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="200" header="SETTINGS" style="border: 0 ; overflow: hidden; font-size: small; width: auto" collapsible="true">
+
+                    <h:form>
+                        <p:menu style="width: auto">  
+                            <p:submenu >
+
+                                <p:menuitem value="Home" url="homePage.xhtml"/>
+                                <p:menuitem value="vote" url="voterPage.xhtml"/>
+                                <p:menuitem value="Results" url="resultsPage.xhtml"/>
+                                 <p:menuitem value="Blockchain Equivalent" url="blockchain.xhtml"/>
+                                <p:menuitem value="Settings" url="settings.xhtml"/>
+                                <p:menuitem value="Your calendar" url="calendar.xhtml"/>
+                                <p:menuitem value="Comment" url="comment.xhtml"/>
+                             
+                                <p:menuitem value="Logout" action="#{vote.logout}"/>
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
+                    <fieldset style="width:150px">
+                        <legend><font color="green">contact us</font></legend>
+                        <b>voting, NAIROBI</b>
+                        P.O.Box ***** - 00300 NAIROBI
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Email:info@evoting.com
+                    </fieldset>
+                </p:layoutUnit>
+                <p:layoutUnit position="center"  style="border: 0; width: 100%; overflow: hidden; font-size:small; font-family: Amaranth">
+                    <div id="display_content" style=" background : url(images/bg-green.png); width: 100%">
+                        <p:panel id="spanel"  style="margin: 4em; background: transparent;  position: relative;">
+                            <h:panelGrid columns="1">
+
+                                <h:form id="profilefrm" style="width: auto">   
+                                    <fieldset>
+                                        <legend><font color="green">LEAVE A COMMENT</font></legend>
+                                        <p:growl id="msgs" sticky="true" showDetail="true" />
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="2">
+                                                <p:outputLabel value="YOUR NAME"/>
+                                                <p:inputText  value="#{vote.comments.name}"    style="color:green; width: 300px"/>
+                                                <p:outputLabel value="YOUR EMAIL ADDRESS"/>
+                                                <p:inputText  value="#{vote.comments.email}"    style="color:green; width: 300px"/>
+                                                <p:outputLabel value="YOUR PHONE NUMBER"/>
+                                                <p:inputText  value="#{vote.comments.phone}"   type="number"  style="color:green; width: 300px"/>
+                                                <p:outputLabel value="COMMENT"/>
+                                                <p:inputTextarea  value="#{vote.comments.comment}"    style="color:green; width: 300px"/>
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.createComments}" image="/images/document-save-2.png" title="leave a comment and the management will look into it" style="height: 20px; width: 20px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid> 
+                                    </fieldset>
+                                </h:form>
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </div>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+

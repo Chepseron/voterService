@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <link href="css/main_style.css" rel="stylesheet" type="text/css" />
+                <link href="css/global.css" rel="stylesheet" type="text/css" />
+                <link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet"/>
+                <meta  http-equiv="refresh" content="10" />
+                <title>.::MU VOTING SYSTEM::.</title>
+            </f:facet>
+
+
+            <script type="text/javascript">
+                //<![CDATA[
+                function handleMessage(data) {
+                    var series = [],
+                            chart = PF('browserChart').plot;
+
+                    for (var key in data) {
+                        series.push([key, data[key]]);
+                    }
+
+                    chart.series[0].data = series;
+                    chart.replot();
+                }
+                //]]> 
+            </script>
+        </h:head>
+        <h:body>
+            <h:outputStylesheet name="css/main_style.css" />
+            <p:layout fullPage="true">
+                <!-- <p:layoutUnit position="north" size="60" resizable="true" closable="true" collapsible="true">
+                     <div id="navi_bar">
+                         <div class="logo"><img src="images/logo.jpg"  width="200px" height="50px" alt=" "/></div>
+                         <div class="navi_bar_container">
+ 
+                             <div id="navi">
+                                 <ul>
+                                     <li><a href="homePage.xhtml">Home</a></li>
+                                     <li><a href="votingPage.xhtml">Sacco</a>  </li>
+                                     <li><a href="votingPage.xhtml">Summary page</a></li>
+                                     <li><a href="votingPage.xhtml">Calculator</a></li>
+                                     <li><a href="calendar.xhtml">Calendar</a></li>
+                                     <li><a href="help.xhtml">Need Help?</a></li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 </p:layoutUnit>-->
+                <p:layoutUnit position="north" size="60" resizable="true" closable="true" collapsible="true">
+                    <div id="navi_bar">
+                        <div class="logo"><img src="images/logo.jpg"  width="100px" height="50px" alt=" "/> VOTING SYSTEM</div>
+                        <div class="navi_bar_container">
+                            <div id="navi">
+                                <ul>
+                                    <li><a href="homePage.xhtml">Home</a></li>
+                                    <li><a href="animalPage.xhtml">Calculator</a></li>
+                                    <li><a href="calendar.xhtml">Calendar</a></li>
+                                    <li><a href="help.xhtml">Need Help?</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </p:layoutUnit>
+                <p:layoutUnit position="east" size="200" header="TODAY'S ALERTS" style="border: 0 ; overflow: hidden; font-size: x-small" collapsible="true">
+                    <h:graphicImage value="/images/Moving-animated-eyes-finger-pointing-down.gif" style="border:0" />
+                    <ul id="js-news" class="js-hidden">
+                        <c:forEach var="quotes"  items="${vote.quotesList}">
+                            <li class="news-item"><c:set var="quotes" value="${quotes.quoteDescription}"></c:set></li>
+                        </c:forEach>
+                    </ul>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50" closable="true" collapsible="true">
+                    <div class="footer_content">
+                        <div class="footer_inside" style="float: right;">Copyright © joseph Kimani All rights reserved.</div>
+                    </div>`
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="200" header="SETTINGS" style="border: 0 ; overflow: hidden; font-size: small; width: auto" collapsible="true">
+
+                    <h:form>
+                        <p:menu style="width: auto">  
+                            <p:submenu >
+
+                                <p:menuitem value="Home" url="homePage.xhtml"/>
+                                <p:menuitem value="vote" url="voterPage.xhtml"/>
+                                <p:menuitem value="Results" url="resultsPage.xhtml"/>
+                                <p:menuitem value="Blockchain Equivalent" url="blockchain.xhtml"/>
+                                <p:menuitem value="Settings" url="settings.xhtml"/>
+                                <p:menuitem value="Your calendar" url="calendar.xhtml"/>
+                                <p:menuitem value="Comment" url="comment.xhtml"/>
+                              
+                                <p:menuitem value="Logout" action="#{vote.logout}"/>
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
+                    <fieldset style="width:150px">
+                        <legend><font color="green">contact us</font></legend>
+                        <b>voting, NAIROBI</b>
+                        P.O.Box ***** - 00300 NAIROBI
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Email:info@evoting.com
+                    </fieldset>
+                </p:layoutUnit>
+                <p:layoutUnit position="center"  style="border: 0; width: 100%; overflow: hidden; font-size:small; font-family: Amaranth">
+                    <div id="display_content" style=" background : url(images/bg-green.png); width: 100%">
+                        <p:panel id="spanel"  style="margin: 4em; background: transparent;  position: relative;">
+                            <h:panelGrid columns="1">
+                                <h:form id="profilefrm" style="width: auto">   
+                                    <p:growl id="msgs" sticky="true" showDetail="true" />
+                                    <div>
+                                        <div>
+                                            <h:panelGrid columns="4">
+                                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30" transient="true" showTickLabels="true" seriesColors="00FF00, FFFF00, FF0000" title="REGISTERED CANDIDATES" value="#{vote.registeredCandidates}"/>
+                                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30"  transient="true" showTickLabels="true" seriesColors="00FF00, FFFF00, FF0000" title="LOGGED ON SYSTEM USERS" value="#{vote.loggedSystemUsers}"/>
+                                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30"  transient="true" showTickLabels="true"  seriesColors="00FF00, FFFF00, FF0000" title="REGISTERED POSITIONS" value="#{vote.registeredPositions}"/>
+                                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30" transient="true" showTickLabels="true"  seriesColors="FF0000, FF0000, FF0000, FF0000" title="VOTERS ALREADY VOTED" value="#{vote.votedVoters}"/>
+                                            </h:panelGrid>
+                                        </div>
+                                        <div>
+                                            <p:dataTable var="candidate" value="#{vote.candidateList}" widgetVar="candidateuctsTable"
+                                                         paginator="true" rows="10"
+                                                         editable="true"
+                                                         style="background: transparent; font-size:11px"
+                                                         id="candidateTable"
+                                                         emptyMessage="No candidate found with given criteria" filteredValue="#{vote.candidateBlankList}">
+                                                <p:column headerText="photo">
+                                                    <h:commandButton image="#{candidate.photo}"/>
+                                                </p:column>
+                                                <p:column filterBy="#{candidate.voterid.firstname}" sortBy="#{candidate.voterid.firstname}" headerText="First name">
+                                                    <p:outputLabel value="#{candidate.voterid.firstname}" />
+                                                </p:column>
+                                                <p:column filterBy="#{candidate.voterid.secondname}" sortBy="#{candidate.voterid.secondname}" headerText="Second name">
+                                                    <p:outputLabel value="#{candidate.voterid.secondname}" />
+                                                </p:column>
+
+                                                <p:column filterBy="#{candidate.voterid.registrationyear}" sortBy="#{candidate.voterid.registrationyear}" headerText="Registration year">
+                                                    <p:outputLabel value="#{candidate.voterid.registrationyear}" />
+                                                </p:column>
+                                                <p:column filterBy="#{candidate.positionid.name}" sortBy="#{candidate.positionid.name}" headerText="Position">
+                                                    <p:outputLabel value="#{candidate.positionid.name}" />
+                                                </p:column>
+                                                <p:column style="width:4%">
+                                                    <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":CandidateForm:candidateDetail" oncomplete="candidateDialog.show()"  value="DETAILS"   title="Edit  #{candidate.voterid.firstname}'s DETAILS">                                                  
+                                                        <f:setPropertyActionListener value="#{candidate}"   target="#{vote.candidate}" />  
+                                                    </p:commandLink>
+                                                </p:column>
+                                                <p:column style="width:4%">
+                                                    <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" ajax="false" action="#{vote.createResult}"  value="VOTE"   title="VOTE FOR  #{candidate.voterid.firstname}'s">                                                  
+                                                        <f:setPropertyActionListener value="#{candidate}"   target="#{vote.candidate}" />  
+                                                    </p:commandLink>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </div>
+                                    </div>
+
+                                </h:form>
+
+
+
+                                <h:form id="CandidateForm">
+                                    <p:dialog header="CANDIDATE" dynamic="true" widgetVar="candidateDialog" showEffect="clip"  hideEffect="explode" resizable="false">
+                                        <p:outputPanel id="candidateDetail" style="text-align:center;"> 
+                                            <h:panelGrid  columns="2" style="border-width: 0; padding: 5; vertical-align: central">
+
+
+                                                <p:panel>
+                                                    <h:commandButton value="candidate"  style=" width:200px; height: 200px"  image="#{vote.candidate.photo}" rendered="true" />
+                                                </p:panel>
+                                                <h:panelGrid columns="2">
+
+                                                    <p:outputLabel value="NAME"/>
+                                                    <p:outputLabel  value="#{vote.candidate.voterid.firstname} #{vote.candidate.voterid.secondname} #{vote.candidate.voterid.thirdname}" style="color: green"/>
+                                                    <p:outputLabel value="CAMPAIGN NAME"/>
+                                                    <p:outputLabel value="#{vote.candidate.alias}" style="color: green"/>
+                                                    <p:outputLabel value="POLICIES"/>
+                                                    <p:outputLabel value="#{vote.candidate.policies}" style="color: green; width: 50%"/>
+                                                    <p:outputLabel value="DATE REGISTERED"/>
+                                                    <p:outputLabel value="#{vote.candidate.creationdate}" style="color: green" />
+                                                    <p:outputLabel value="REGISTRATION YEAR"/>
+                                                    <p:outputLabel value="#{vote.candidate.voterid.registrationyear}"  style="color: green"/>
+                                                    <p:outputLabel value="POSITION"/>
+                                                    <p:outputLabel value="#{vote.candidate.positionid.name}" style="color: green"/>
+                                                    <p:outputLabel value="DESCRIPTION"/>
+                                                    <p:outputLabel value="#{vote.candidate.positionid.description}" style="color: green; width: 50%"/>
+                                                    <p:outputLabel value="ROLES"/>
+                                                    <p:outputLabel value="#{vote.candidate.positionid.roles}" style="color: green"/>
+                                                    <p:outputLabel value="STATUS"/>
+                                                    <p:outputLabel value="#{vote.candidate.status.name}" style="color: green"/>
+                                                </h:panelGrid>
+                                            </h:panelGrid>
+                                        </p:outputPanel>
+                                    </p:dialog>
+                                </h:form>
+
+
+
+
+
+
+
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </div>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+

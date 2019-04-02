@@ -1,0 +1,885 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <link href="css/main_style.css" rel="stylesheet" type="text/css" />
+                <link href="css/global.css" rel="stylesheet" type="text/css" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>.:: VOTER VOTING SYSTEM::.</title>
+            </f:facet>
+
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="60" resizable="true" closable="true" collapsible="true">
+                    <div id="navi_bar">
+                        <div class="logo"><img src="images/logo.jpg"  width="100px" height="50px" alt=" "/><font color="green"> VOTING SYSTEM</font></div>
+
+                        <div class="navi_bar_container">
+                            <div id="navi">
+                                <ul>
+                                    <li><a href="homePage.xhtml">Home</a></li>
+                                    <li><a href="animalPage.xhtml">Calculator</a></li>
+                                    <li><a href="calendar.xhtml">Calendar</a></li>
+                                    <li><a href="help.xhtml">Need Help?</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </p:layoutUnit>
+                <p:layoutUnit position="east" size="200" header="TODAY'S ALERTS" style="border: 0 ; overflow: hidden; font-size: x-small" collapsible="true">
+                    <h:graphicImage value="/images/Moving-animated-eyes-finger-pointing-down.gif" style="border:0" />
+                    <ul id="js-news" class="js-hidden">
+                        <c:forEach var="quotes"  items="${vote.quotesList}">
+                            <li class="news-item" style="color: #000"><c:set var="quotes" value="${quotes.quoteDescription}" ></c:set></li>
+                        </c:forEach>
+                    </ul>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50" closable="true" collapsible="true">
+                    <div class="footer_content">
+                        <div class="footer_inside" style="float: right;">Copyright Â© joseph Kimani All rights reserved.</div>
+                    </div>`
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="200" header="SETTINGS" style="border: 0 ; overflow: hidden; font-size: small; width: auto" collapsible="true">
+                    <h:form>
+                        <p:menu style="width: auto">  
+                            <p:submenu >
+
+                                <p:menuitem value="Home" url="homePage.xhtml"/>
+                                <p:menuitem value="vote" url="voterPage.xhtml"/>
+                                <p:menuitem value="Results" url="resultsPage.xhtml"/>
+                                <p:menuitem value="Blockchain Equivalent" url="blockchain.xhtml"/>
+                                <p:menuitem value="Settings" url="settings.xhtml"/>
+                                <p:menuitem value="Your calendar" url="calendar.xhtml"/>
+
+                                <p:menuitem value="Logout" action="#{vote.logout}"/>
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
+                    <fieldset>
+                        <legend><font color="green">contact us</font></legend>
+                        <b>muvote, NAIROBI</b>
+                        P.O.Box ***** - 00300 NAIROBI
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Email:info@.com
+                    </fieldset>
+                </p:layoutUnit>
+                <p:layoutUnit position="east" size="200" header="SETTINGS" style="border: 0 ; overflow: hidden; font-size: x-small" collapsible="true">
+                    <h:form id="settingsForm">
+                        <h:panelGrid columns="1">
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE USER GROUPS" style=" width: 180px; height: 32px"  action="#{vote.activateUserGroupsTab}"/>
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE SYSTEM USER" style=" width: 180px; height: 32px"   action="#{vote.activateSystemUserTab}"/>
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE CONSTITUENCIES" style=" width: 180px; height: 32px"  action="#{vote.activateDepartmentTab}"/>
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE VOTER" style=" width: 180px; height: 32px"    action="#{vote.activateVotersTab}"/>
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE POSITIONS" style=" width: 180px; height: 32px"   action="#{vote.acivatePositionsTab}"/>
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE CANDIDATE" style=" width: 180px; height: 32px"  action="#{vote.activateCandidatesTab}"/>
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE STATUS" style=" width: 180px; height: 32px"  action="#{vote.activateStatusTab}"/>
+                            <p:commandButton ajax="false"  icon="fa fa-user"   value="MANAGE COMMENTS" style=" width: 180px; height: 32px"  action="#{vote.activateCommentsTab}"/>
+
+                        </h:panelGrid>
+                    </h:form>
+                    <fieldset>
+                        <legend><font color="green">contact us</font></legend>
+                        <b>muvote, NAIROBI</b>
+                        P.O.Box ***** - 00300 NAIROBI
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Mobile:+254-72********
+                        Email:info@.com
+                    </fieldset>
+                </p:layoutUnit>
+
+
+
+
+                <p:layoutUnit position="center"  style="border: 0; overflow: hidden; font-size: small">
+                    <div id="display_content" style=" background : url(images/bg-green.png);">
+
+                        <div>
+                            <h:panelGrid columns="4">
+                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30" transient="true" showTickLabels="true" seriesColors="00FF00, FFFF00, FF0000" title="REGISTERED CANDIDATES" value="#{vote.registeredCandidates}"/>
+                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30"  transient="true" showTickLabels="true" seriesColors="00FF00, FFFF00, FF0000" title="LOGGED ON SYSTEM USERS" value="#{vote.loggedSystemUsers}"/>
+                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30"  transient="true" showTickLabels="true"  seriesColors="00FF00, FFFF00, FF0000" title="REGISTERED POSITIONS" value="#{vote.registeredPositions}"/>
+                                <p:meterGaugeChart  style="width:200px;height:150px;" intervalOuterRadius="30" transient="true" showTickLabels="true"  seriesColors="FF0000, FF0000, FF0000, FF0000" title="VOTERS ALREADY VOTED" value="#{vote.votedVoters}"/>
+                            </h:panelGrid>
+                        </div>
+                        <hr/>
+
+                        <h:panelGrid columns="1">
+                            <p:growl id="msgs" sticky="true" showDetail="true" />
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.userGroupTab}"    style="background: transparent; width: 100%; height: 100%"> 
+                                <p:tab title="MANAGE GROUPS" >
+                                    <h:form id="GroupsFORM" style="width: auto" > 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="NAME"/>
+                                                <p:inputText  value="#{vote.groups.name}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DESCRIPTION"/>
+                                                <p:inputTextarea  value="#{vote.groups.description}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DESCRIPTION"/>
+                                                <p:inputTextarea  value="#{vote.groups.role}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="ADDED ON"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.groups.creationdate}"   style="color:RED; width: 200px"   pattern="dd/MMM/yyyy" />
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.createGroups()}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="CREATED GROUPS">
+                                    <h:form id="createdgroups" style="width: auto" >
+                                        <p:dataTable var="groups" value="#{vote.groupsList}" widgetVar="amotizationTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="groupsTable"
+                                                     emptyMessage="No group found with given criteria" filteredValue="#{vote.groupsBlankList}">
+                                            <p:column filterBy="#{groups.name}" sortBy="#{groups.name}" headerText="group name">
+                                                <p:outputLabel value="#{groups.name}" />
+                                            </p:column>
+                                            <p:column filterBy="#{groups.description}" sortBy="#{groups.description}" headerText="group description">
+                                                <p:outputLabel value="#{groups.description}" />
+                                            </p:column>
+                                            <p:column filterBy="#{groups.creationdate}" sortBy="#{groups.creationdate}" headerText="added on">
+                                                <p:outputLabel value="#{groups.creationdate}" />
+                                            </p:column>
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":groupsForm:groupsDetail" oncomplete="groupsDialog.show()"  value="DETAILS"   title="Edit  #{groups.groupname}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{groups}"   target="#{vote.groups}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+                            <h:form id="groupsForm">
+                                <p:dialog header="GROUPS" dynamic="true" widgetVar="groupsDialog" showEffect="clip"  hideEffect="explode" resizable="false">
+                                    <p:outputPanel id="groupsDetail" style="text-align:center;"> 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="NAME"/>
+                                                <p:inputText  value="#{vote.groups.name}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DESCRIPTION"/>
+                                                <p:inputTextarea  value="#{vote.groups.description}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="ROLES"/>
+                                                <p:inputTextarea  value="#{vote.groups.role}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="ADDED ON"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.groups.creationdate}"   style="color:RED; width: 200px"   pattern="dd/MMM/yyyy" />
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.editGroups}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid> 
+                                    </p:outputPanel>
+                                </p:dialog>
+                            </h:form>
+
+
+
+
+
+
+
+
+
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.commentsTab}"    style="background: transparent; width: 100%; height: 100%"> 
+
+                                <p:tab title="COMMENTS">
+                                    <h:form id="createdComments" style="width: auto" >
+                                        <p:dataTable var="Comments" value="#{vote.commentsList}" widgetVar="commentsTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="CommentsTable"
+                                                     emptyMessage="No group found with given criteria" filteredValue="#{vote.commentsBlankList}">
+                                            <p:column filterBy="#{Comments.name}" sortBy="#{Comments.name}" headerText="Commentor">
+                                                <p:outputLabel value="#{Comments.name}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Comments.comment}" sortBy="#{Comments.comment}" headerText="comment">
+                                                <p:outputLabel value="#{Comments.comment}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Comments.email}" sortBy="#{Comments.email}" headerText="email">
+                                                <p:outputLabel value="#{Comments.email}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Comments.phone}" sortBy="#{Comments.phone}" headerText="Phone">
+                                                <p:outputLabel value="#{Comments.phone}" />
+                                            </p:column>
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":CommentsForm:CommentsDetail" oncomplete="CommentsDialog.show()"  value="DETAILS"   title="Edit  #{Comments.name}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{Comments}"   target="#{vote.comments}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+                            <h:form id="CommentsForm" style="width: auto">   
+                                <p:dialog header="COMMENTS" dynamic="true" widgetVar="CommentsDialog" showEffect="clip"  hideEffect="explode" resizable="false">
+                                    <p:outputPanel id="CommentsDetail" style="text-align:center;"> 
+                                        <fieldset>
+                                            <legend><font color="green">RESPOND TO A COMMENT</font></legend>
+                                            <p:growl id="msgs" sticky="true" showDetail="true" />
+                                            <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                                <h:panelGrid columns="2">
+                                                    <p:outputLabel value="YOUR NAME"/>
+                                                    <p:inputText  value="#{vote.comments.name}"    style="color:green; width: 300px"/>
+                                                    <p:outputLabel value="YOUR EMAIL ADDRESS"/>
+                                                    <p:inputText  value="#{vote.comments.email}"    style="color:green; width: 300px"/>
+                                                    <p:outputLabel value="YOUR PHONE NUMBER"/>
+                                                    <p:inputText  value="#{vote.comments.phone}"   type="number"  style="color:green; width: 300px"/>
+                                                    <p:outputLabel value="COMMENT"/>
+                                                    <p:inputTextarea  value="#{vote.comments.comment}"    style="color:green; width: 300px"/>
+                                                </h:panelGrid>
+                                                <h:panelGrid columns="5">
+                                                    <h:commandButton value="RESPOND"  action="#{vote.createComments}" image="/images/document-save-2.png" title="leave a comment and the management will look into it" style="height: 20px; width: 20px" />
+                                                </h:panelGrid>
+                                            </h:panelGrid> 
+                                        </fieldset>
+                                    </p:outputPanel>
+                                </p:dialog>
+                            </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.statusTab}"    style="background: transparent; width: 100%; height: 100%; alignment-adjust: middle" > 
+                                <p:growl id="msgs332" sticky="true" showDetail="true" />
+                                <p:tab title="MANAGE STATUS" >
+                                    <h:form id="statusform" style="width: auto" > 
+                                        <h:panelGrid columns="1" >
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="NAME"/>
+                                                <p:inputText  value="#{vote.status.name}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DESCRIPTION"/>
+                                                <p:inputTextarea  value="#{vote.status.description}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="ADDED ON"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.status.creationdate}"   style="color:RED; width: 200px"   pattern="dd/MMM/yyyy" />
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="8">
+                                                <h:commandButton value="SUBMIT"   action="#{vote.createStatus()}" image="/images/document-save-2.png" style="height:22px"/>
+                                                <h:commandButton value="LOGOUT"   action="#{vote.logout}" image="/images/system-logout.png" style="height:22px"/>
+                                            </h:panelGrid>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="CREATED STATUS">
+                                    <h:form id="createdStatus" style="width: auto" >
+                                        <p:dataTable var="status" value="#{vote.statusList}" widgetVar="statusTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="statusTable"
+                                                     emptyMessage="No dept Type found with given criteria" filteredValue="#{vote.statusBlankList}">
+
+                                            <p:column filterBy="#{status.creationdate}" sortBy="#{status.creationdate}" headerText="created on">
+                                                <p:outputLabel value="#{status.creationdate}" />
+                                            </p:column>
+                                            <p:column filterBy="#{status.name}" sortBy="#{status.name}" headerText="Name">
+                                                <p:outputLabel value="#{status.name}" />
+                                            </p:column>
+                                            <p:column filterBy="#{status.description}" sortBy="#{status.description}" headerText="description">
+                                                <p:outputLabel value="#{status.description}" />
+                                            </p:column>
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":statusForm:statusDetail" oncomplete="statusDialog.show()"  value="DETAILS"   title="Edit  #{status.typename}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{status}"   target="#{vote.status}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.departmentTab}"    style="background: transparent; width: 100%; height: 100%; alignment-adjust: middle" > 
+                                <p:growl id="msgs2" sticky="true" showDetail="true" />
+                                <p:tab title="MANAGE CONSTITUENCIES" >
+                                    <h:form id="deptform" style="width: auto" > 
+                                        <h:panelGrid columns="1" >
+                                            <h:panelGrid columns="2">
+                                                <p:outputLabel value="NAME"/>
+                                                <p:inputText  value="#{vote.department.name}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="ROLES"/>
+                                                <p:inputTextarea  value="#{vote.department.roles}"    style="color:RED; width: 200px"/>
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="8">
+                                                <h:commandButton value="SUBMIT"   action="#{vote.createDept}" image="/images/document-save-2.png" style="height:22px"/>
+                                                <h:commandButton value="LOGOUT"   action="#{vote.logout}" image="/images/system-logout.png" style="height:22px"/>
+                                            </h:panelGrid>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="CREATED CONSTITUENCIES">
+                                    <h:form id="createddEPTS" style="width: auto" >
+                                        <p:dataTable var="Department" value="#{vote.departmentList}" widgetVar="DepartmentTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="DepartmentTable"
+                                                     emptyMessage="No acct Type found with given criteria" filteredValue="#{vote.departmentBlankList}">
+
+                                            <p:column filterBy="#{Department.name}" sortBy="#{Department.name}" headerText="Name">
+                                                <p:outputLabel value="#{Department.name}" />
+                                            </p:column>
+
+                                            <p:column filterBy="#{Department.roles}" sortBy="#{Department.roles}" headerText="roles">
+                                                <p:outputLabel value="#{Department.roles}" />
+                                            </p:column>
+
+                                        </p:dataTable>
+
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.systemUserTab}"    style="background: transparent; width: 100%; height: 100%; alignment-adjust: middle" > 
+                                <p:tab title="MANAGE ADMINS" >
+                                    <h:form id="userform" style="width: auto" > 
+                                        <h:panelGrid columns="1" >
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="FIRST NAME"/>
+                                                <p:inputText  value="#{vote.admins.firstName}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="LAST NAME"/>
+                                                <p:inputText  value="#{vote.admins.lastName}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="EMAIL ADDRESS"/>
+                                                <p:inputText  value="#{vote.admins.email}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="MOBILE PHONE"/>
+                                                <p:inputText  value="#{vote.admins.phone}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="GROUP"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.admins.groupID}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.groupsList}" var="GROUP" itemValue="#{GROUP.idgroups}" itemLabel="#{GROUP.groupname}" />
+                                                </p:selectOneMenu>
+                                                <p:outputLabel value="PASSWORD"/>
+                                                <h:inputSecret  value="#{vote.admins.password}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="USERNAME"/>
+                                                <p:inputText  value="#{vote.admins.username}"    style="color:RED; width: 200px"/>
+
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="8">
+                                                <h:commandButton value="SUBMIT"   action="#{vote.createAdmins}" image="/images/document-save-2.png" style="height:22px"/>
+                                                <h:commandButton value="LOGOUT"   action="#{vote.logout}" image="/images/system-logout.png" style="height:22px"/>
+                                            </h:panelGrid>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="CREATED SYSTEM ADMINS">
+                                    <h:form id="createdUsers" style="width: auto" >
+                                        <p:dataTable var="admin" value="#{vote.adminsList}" widgetVar="adminTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="adminTable"
+                                                     emptyMessage="No acct Type found with given criteria" filteredValue="#{vote.adminsBlankList}">
+                                            <p:column filterBy="#{admin.email}" sortBy="#{admin.email}" headerText="email">
+                                                <p:outputLabel value="#{admin.email}" />
+                                            </p:column>
+                                            <p:column filterBy="#{admin.firstName}" sortBy="#{admin.firstName}" headerText="firstName">
+                                                <p:outputLabel value="#{admin.firstName}" />
+                                            </p:column>
+                                            <p:column filterBy="#{admin.lastName}" sortBy="#{admin.lastName}" headerText="lastName">
+                                                <p:outputLabel value="#{admin.lastName}" />
+                                            </p:column>
+                                            <p:column filterBy="#{admin.username}" sortBy="#{admin.username}" headerText="username">
+                                                <p:outputLabel value="#{admin.username}" />
+                                            </p:column>
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":adminForm:adminDetail" oncomplete="adminDialog.show()"  value="DETAILS"   title="Edit  #{admin.firstName}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{admin}"   target="#{vote.admins}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+
+
+                            <h:form id="adminForm">
+                                <p:dialog header="ADMIN PROFILE" dynamic="true" widgetVar="adminDialog" showEffect="clip"  hideEffect="explode" resizable="false">
+                                    <p:outputPanel id="adminDetail" style="text-align:center;"> 
+                                        <h:panelGrid columns="1" >
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="FIRST NAME"/>
+                                                <p:inputText  value="#{vote.admins.firstName}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="LAST NAME"/>
+                                                <p:inputText  value="#{vote.admins.lastName}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="EMAIL ADDRESS"/>
+                                                <p:inputText  value="#{vote.admins.email}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="MOBILE PHONE"/>
+                                                <p:inputText  value="#{vote.admins.phone}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="GROUP"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.admins.groupId}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.groupsList}" var="GROUP" itemValue="#{GROUP}" itemLabel="#{GROUP.groupname}" />
+                                                </p:selectOneMenu>
+                                                <p:outputLabel value="PASSWORD"/>
+                                                <h:inputSecret  value="#{vote.admins.password}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="USERNAME"/>
+                                                <p:inputText  value="#{vote.admins.username}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DATE ADDED"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.admins.addedon}"   pattern="dd/MMM/yyyy" />
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="8">
+                                                <h:commandButton value="SUBMIT"   action="#{vote.editAdmins}" image="/images/document-save-2.png" style="height:22px"/>
+                                                <h:commandButton value="LOGOUT"   action="#{vote.logout}" image="/images/system-logout.png" style="height:22px"/>
+                                            </h:panelGrid>
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </p:dialog>
+                            </h:form>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.candidateTab}"    style="background: transparent; width: 100%; height: 100%"> 
+                                <p:tab title="MANAGE CANDIDATES" >
+                                    <h:form id="candForm" style="width: auto" > 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="wait for the candidates  number then upload his/her photo"/>
+                                                <p:inputText  value="#{vote.candidate.idcandidate}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="NAME"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.candidate.voterid}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.voterList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.firstname} #{voterid.secondname} #{voterid.regnum}  " />
+                                                </p:selectOneMenu>
+                                                <p:outputLabel value="DATE REGISTERED"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.candidate.creationdate}"   pattern="dd/MMM/yyyy" />
+                                                <p:outputLabel value="POSITION"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.candidate.positionid}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.positionList}" var="candidate" itemValue="#{candidate}" itemLabel="#{candidate.name}" />
+                                                </p:selectOneMenu>
+
+                                                <p:outputLabel value="STATUS"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.candidate.status}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.statusList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.name}  " />
+                                                </p:selectOneMenu>
+                                                <p:outputLabel value="POLICIES"/>
+                                                <p:inputTextarea  value="#{vote.candidate.policies}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="CAMPAIGN NAME"/>
+                                                <p:inputText  value="#{vote.candidate.alias}"    style="color:RED; width: 200px"/>
+
+
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.createCandidate}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid> 
+                                    </h:form>
+                                    <h:form>
+                                        <p:fileUpload fileUploadListener="#{vote.handleFileUpload}" mode="advanced" label="Upload candidates photo" dragDropSupport="false"
+                                                      multiple="true" update="messages" sizeLimit="100000"  id="candidatesPhoto" allowTypes="/(\.|\/)(gif|jpe?g|txt)$/" />
+
+                                        <p:growl id="messages" for="candidatesPhotos" showDetail="true" />
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="CREATED CANDIDATES">
+                                    <h:form  style="width: auto" >
+                                        <p:dataTable var="candidate" value="#{vote.candidateList}" widgetVar="candidateuctsTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="candidateTable"
+                                                     emptyMessage="No candidateuct found with given criteria" filteredValue="#{vote.candidateBlankList}">
+                                            <p:column filterBy="#{candidate.voterid.firstname}" sortBy="#{candidate.voterid.firstname}" headerText="First name">
+                                                <p:outputLabel value="#{candidate.voterid.firstname}" />
+                                            </p:column>
+                                            <p:column filterBy="#{candidate.voterid.secondname}" sortBy="#{candidate.voterid.secondname}" headerText="second name">
+                                                <p:outputLabel value="#{candidate.voterid.secondname}" />
+                                            </p:column>
+                                            <p:column filterBy="#{candidate.positionid.name}" sortBy="#{candidate.positionid.name}" headerText="Position">
+                                                <p:outputLabel value="#{candidate.positionid.name}" />
+                                            </p:column>
+                                            <p:column filterBy="#{candidate.creationdate}" sortBy="#{candidate.creationdate}" headerText="Date registered">
+                                                <p:outputLabel value="#{candidate.creationdate}" />
+                                            </p:column>
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":CandidateForm:candidateDetail" oncomplete="candidateDialog.show()"  value="DETAILS"   title="Edit  #{candidate.voterid.firstname}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{candidate}"   target="#{vote.candidate}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+                            <h:form id="CandidateForm">
+                                <p:dialog header="CANDIDATE" dynamic="true" widgetVar="candidateDialog" showEffect="clip"  hideEffect="explode" resizable="false">
+                                    <p:outputPanel id="candidateDetail" style="text-align:center;"> 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+
+
+                                            <h:panelGrid columns="4">
+
+                                                <p:outputLabel value="NAME"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.candidate.voterid}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.voterList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.firstname} #{voterid.secondname} #{voterid.regnum}  " />
+                                                </p:selectOneMenu>
+                                                <p:outputLabel value="DATE REGISTERED"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.candidate.creationdate}"   pattern="dd/MMM/yyyy" />
+                                                <p:outputLabel value="POSITION"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.candidate.positionid}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.positionList}" var="candidate" itemValue="#{candidate}" itemLabel="#{candidate.name}" />
+                                                </p:selectOneMenu>
+
+                                                <p:outputLabel value="STATUS"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.candidate.voterid}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.voterList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.firstname} #{voterid.secondname} #{voterid.regnum}  " />
+                                                </p:selectOneMenu>
+                                                <p:outputLabel value="POLICIES"/>
+                                                <p:inputText  value="#{vote.candidate.policies}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="CAMPAIGN NAME"/>
+                                                <p:inputText  value="#{vote.candidate.alias}"    style="color:RED; width: 200px"/>
+                                            </h:panelGrid>
+
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.editCandidate}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </p:dialog>
+                            </h:form>
+
+
+
+
+
+
+
+
+
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.positionTab}"    style="background: transparent; width: 100%; height: 100%"> 
+                                <p:tab title="MANAGE POSITIONS" >
+                                    <h:form id="positionfORM" style="width: auto" > 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="YEAR REGISTERED"/>
+                                                <p:inputText  value="#{vote.position.academicyear}" type="number"   style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DATE CREATED"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.position.creationdate}"   pattern="dd/MMM/yyyy" />
+                                                <p:outputLabel value="DESCRIPTION"/>
+                                                <p:inputTextarea  value="#{vote.position.description}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="POSITION NAME"/>
+                                                <p:inputText  value="#{vote.position.name}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="ROLES"/>
+                                                <p:inputTextarea  value="#{vote.position.roles}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="CONSTITUENCIES"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.position.deptid}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.departmentList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.name} " />
+                                                </p:selectOneMenu>
+
+
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.createPosition}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid> 
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="CREATED POSITION">
+                                    <h:form  style="width: auto" >
+                                        <p:dataTable var="Position" value="#{vote.positionList}" widgetVar="amotizationTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="PositionTable"
+                                                     emptyMessage="No Positionuct found with given criteria" filteredValue="#{vote.positionBlankList}">
+
+                                            <p:column filterBy="#{Position.academicyear}" sortBy="#{Position.academicyear}" headerText="Year registered">
+                                                <p:outputLabel value="#{Position.academicyear}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Position.creationdate}" sortBy="#{Position.creationdate}" headerText="Date created">
+                                                <p:outputLabel value="#{Position.creationdate}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Position.name}" sortBy="#{Position.name}" headerText="Position">
+                                                <p:outputLabel value="#{Position.name}" />
+                                            </p:column>
+
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":positionForm:PositionDetail" oncomplete="PositionDialog.show()"  value="DETAILS"   title="Edit  #{Position.name}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{Position}"   target="#{vote.Position}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+
+                            <h:form id="positionForm">
+                                <p:dialog header="POSITION" dynamic="true" widgetVar="PositionDialog" showEffect="clip"  hideEffect="explode" resizable="false">
+                                    <p:outputPanel id="PositionDetail" style="text-align:center;"> 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value="YEAR REGISTERED"/>
+                                                <p:inputText  value="#{vote.position.academicyear}" type="number"   style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DATE CREATED"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.position.creationdate}"   pattern="dd/MMM/yyyy" />
+                                                <p:outputLabel value="DESCRIPTION"/>
+                                                <p:inputTextarea  value="#{vote.position.description}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="POSITION NAME"/>
+                                                <p:inputText  value="#{vote.position.name}" type="number"   style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="ROLES"/>
+                                                <p:inputTextarea  value="#{vote.position.roles}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="CONSTITUENCIES"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.position.deptid}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.departmentList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.name} " />
+                                                </p:selectOneMenu>
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.editPosition}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </p:dialog>
+                            </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <p:tabView  styleClass="si-icon-16x16 si-icon-edit" rendered="#{vote.voterTab}"    style="background: transparent; width: 100%; height: 100%"> 
+                                <p:tab title="MANAGE VOTERS" >
+                                    <h:form id="voterForm" style="width: auto" > 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="4">
+
+                                                <p:outputLabel value=" EMAIL"/>
+                                                <p:inputText  value="#{vote.voter.emailadd}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" PASSWORD"/>
+                                                <p:inputText type="password"  value="#{vote.voter.password}"    style="color:RED; width: 200px"/>
+
+
+                                                <p:outputLabel value=" FIRST NAME"/>
+                                                <p:inputText  value="#{vote.voter.firstname}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" SECOND NAME"/>
+                                                <p:inputText  value="#{vote.voter.secondname}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" THIRD NAME"/>
+                                                <p:inputText  value="#{vote.voter.thirdname}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DATE REGISTERED"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.voter.creationDate}"   pattern="dd/MMM/yyyy" />
+
+                                                <p:outputLabel value=" NATIONAL ID"/>
+                                                <p:inputText  value="#{vote.voter.nationalid}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" PHONE"/>
+                                                <p:inputText  value="#{vote.voter.phone}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" VOTER UNIQUE NUMBER"/>
+                                                <p:inputText  value="#{vote.voter.regnum}"    style="color:RED; width: 200px"/>
+
+                                                <p:outputLabel value=" GENDER"/>
+                                                <p:selectOneRadio id="console"  value="#{vote.voter.gender}">
+                                                    <f:selectItem itemLabel="female" itemValue="female" />
+                                                    <f:selectItem itemLabel="male" itemValue="male" />
+                                                </p:selectOneRadio>
+
+                                                <p:outputLabel value="CONSTITUENCIES"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith"   converter="#{convertor}"  immediate="true"    value="#{vote.voter.department}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.departmentList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.name} " />
+                                                </p:selectOneMenu>
+
+
+
+
+
+
+
+
+                                                <p:outputLabel value=" D.O.B"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.voter.dob}"   pattern="dd/MMM/yyyy" />
+                                                <p:outputLabel value="STATUS"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"  converter="#{convertor}"    value="#{vote.voter.status}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.statusList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.name} " />
+                                                </p:selectOneMenu>
+
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.createVoter}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid> 
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="CREATED VOTERS">
+                                    <h:form  style="width: auto" >
+                                        <p:dataTable var="Voter" value="#{vote.voterList}" widgetVar="amotizationTable"
+                                                     paginator="true" rows="10"
+                                                     editable="true"
+                                                     style="background: transparent; font-size:11px"
+                                                     id="VoterTable"
+                                                     emptyMessage="No Voteruct found with given criteria" filteredValue="#{vote.voterBlankList}">
+
+                                            <p:column filterBy="#{Voter.firstname}" sortBy="#{Voter.firstname}" headerText="first name">
+                                                <p:outputLabel value="#{Voter.firstname}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Voter.secondname}" sortBy="#{Voter.secondname}" headerText="second name">
+                                                <p:outputLabel value="#{Voter.secondname}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Voter.thirdname}" sortBy="#{Voter.thirdname}" headerText="Third name">
+                                                <p:outputLabel value="#{Voter.thirdname}" />
+                                            </p:column>
+                                            <p:column filterBy="#{Voter.regnum}" sortBy="#{Voter.regnum}" headerText="Voter Unique Number">
+                                                <p:outputLabel value="#{Voter.regnum}" />
+                                            </p:column>
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" action="#{vote.deleteVoter(Voter)}" value="DELETE"   title="DELETE  #{Voter.firstname}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{Voter}"   target="#{vote.voter}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                            <p:column style="width:4%">
+                                                <p:commandLink process="@this" styleClass="si-icon-16x16 si-icon-edit" update=":VoterForm:VoterDetail" oncomplete="VoterDialog.show()"  value="DETAILS"   title="Edit  #{Voter.firstname}'s DETAILS">                                                  
+                                                    <f:setPropertyActionListener value="#{Voter}"   target="#{vote.voter}" />  
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </p:tab>
+                            </p:tabView>
+
+                            <h:form id="VoterForm">
+                                <p:dialog header="MANAGE VOTERS" dynamic="true" widgetVar="VoterDialog" showEffect="clip"  hideEffect="explode" resizable="false">
+                                    <p:outputPanel id="VoterDetail" style="text-align:center;"> 
+                                        <h:panelGrid  columns="1" style="border-width: 0; padding: 5; vertical-align: central">
+                                            <h:panelGrid columns="4">
+                                                <p:outputLabel value=" FIRST NAME"/>
+                                                <p:inputText  value="#{vote.voter.firstname}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" SECOND NAME"/>
+                                                <p:inputText  value="#{vote.voter.secondname}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" THIRD NAME"/>
+                                                <p:inputText  value="#{vote.voter.thirdname}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value="DATE REGISTERED"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.voter.creationDate}"   pattern="dd/MMM/yyyy" />
+
+                                                <p:outputLabel value=" NATIONAL ID"/>
+                                                <p:inputText  value="#{vote.voter.nationalid}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" PHONE"/>
+                                                <p:inputText  value="#{vote.voter.phone}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" EMAIL"/>
+                                                <p:inputText  value="#{vote.voter.emailadd}"    style="color:RED; width: 200px"/>
+                                                <p:outputLabel value=" VOTER UNIQUE NUMBER"/>
+                                                <p:inputText  value="#{vote.voter.regnum}"    style="color:RED; width: 200px"/>
+
+                                                <p:outputLabel value=" GENDER"/>
+                                                <p:selectOneRadio id="console"  value="#{vote.voter.gender}">
+                                                    <f:selectItem itemLabel="female" itemValue="female" />
+                                                    <f:selectItem itemLabel="male" itemValue="male" />
+                                                </p:selectOneRadio>
+
+                                                <p:outputLabel value="CONSTITUENCIES"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.voter.department}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.departmentList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.name} " />
+                                                </p:selectOneMenu>
+                                                <p:outputLabel value=" D.O.B"/>
+                                                <p:calendar  readonlyInput="true" pages="1"  maxdate="#{date.today}" value="#{vote.voter.dob}"   pattern="dd/MMM/yyyy" />
+                                                <p:outputLabel value="STATUS"/>
+                                                <p:selectOneMenu filter="true" filterMatchMode="startsWith" immediate="true"    converter="#{convertor}"    value="#{vote.voter.status}"  style="width: 200px" >
+                                                    <f:selectItem itemLabel=" " itemValue="" noSelectionOption="true" />
+                                                    <f:selectItems value="#{vote.statusList}" var="voterid" itemValue="#{voterid}" itemLabel="#{voterid.name} " />
+                                                </p:selectOneMenu>
+
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="5">
+                                                <h:commandButton value="SUBMIT"  action="#{vote.editVoter}" image="/images/document-save-2.png" style="height: 32px; width: 32px" />
+                                            </h:panelGrid>
+                                        </h:panelGrid> 
+                                    </p:outputPanel>
+                                </p:dialog>
+                            </h:form>
+                        </h:panelGrid>
+                        <hr/>
+                    </div>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+
